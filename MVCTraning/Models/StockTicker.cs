@@ -27,18 +27,23 @@ namespace MVCTraning.StockTicker
 		private readonly Timer _timer;
 		private volatile bool _updatingStockPrices = false;
 
+
+		private StockDBContext stocksContext = new StockDBContext();
+
 		private StockTicker(IHubConnectionContext<dynamic> clients)
 		{
 			Clients = clients;
 
 			_stocks.Clear();
-			var stocks = new List<Stock>
-            {
-                new Stock { Symbol = "MSFT", Price = 30.31m },
-                new Stock { Symbol = "APPL", Price = 578.18m },
-                new Stock { Symbol = "GOOG", Price = 570.30m }
-            };
-			stocks.ForEach(stock => _stocks.TryAdd(stock.Symbol, stock));
+			//var stocks = new List<Stock>
+			//{
+			//	new Stock { Symbol = "MSFT", Price = 30.31m },
+			//	new Stock { Symbol = "APPL", Price = 578.18m },
+			//	new Stock { Symbol = "GOOG", Price = 570.30m }
+			//};
+			//stocks.ForEach(stock => _stocks.TryAdd(stock.Symbol, stock));
+			List<Stock> stocks = stocksContext.Stocks.ToList();
+			stocks.ForEach(Obj => _stocks.TryAdd(Obj.Symbol, Obj));
 
 			_timer = new Timer(UpdateStockPrices, null, _updateInterval, _updateInterval);
 
