@@ -49,3 +49,7 @@ D:\WebSite\MVCTraning\MVCTraning\bin\zh-Hant\System.Web.Http.resources.dll
 D:\WebSite\MVCTraning\MVCTraning\bin\zh-Hant\System.Web.Http.WebHost.resources.dll
 D:\WebSite\MVCTraning\MVCTraning\obj\Debug\MVCTraning.dll
 D:\WebSite\MVCTraning\MVCTraning\obj\Debug\MVCTraning.pdb
+D:\WebSite\MVCTraning\MVCTraning\bin\EntityFramework.dll
+D:\WebSite\MVCTraning\MVCTraning\bin\EntityFramework.SqlServer.dll
+D:\WebSite\MVCTraning\MVCTraning\bin\EntityFramework.xml
+D:\WebSite\MVCTraning\MVCTraning\bin\EntityFramework.SqlServer.xml
