@@ -15,9 +15,20 @@ namespace MVCTraning.StockTicker
 		[Required] 
 		[DatabaseGenerated(DatabaseGeneratedOption.None)]
 		public int StockID { set; get; }
+
 		[MaxLength(10)]
 		[Required] 
 		public string Symbol { get; set; }
+
+		[NotMapped]
+		public decimal DayLow { get; private set; }
+
+		[NotMapped]
+		public decimal DayHigh { get; private set; }
+
+		[NotMapped]
+		public decimal LastChange { get; private set; }
+
 		[Required] 
 		public decimal Price
 		{
@@ -32,16 +43,27 @@ namespace MVCTraning.StockTicker
 					return;
 				}
 
+				LastChange = value - _price;
 				_price = value;
 
 				if (DayOpen == 0)
 				{
 					DayOpen = _price;
 				}
+				if (_price < DayLow || DayLow == 0)
+				{
+					DayLow = _price;
+				}
+				if (_price > DayHigh)
+				{
+					DayHigh = _price;
+				}
 			}
 		}
+
 		[NotMapped] 
 		public decimal DayOpen { get; private set; }
+
 		[NotMapped] 
 		public decimal Change
 		{
@@ -50,6 +72,7 @@ namespace MVCTraning.StockTicker
 				return Price - DayOpen;
 			}
 		}
+
 		[NotMapped] 
 		public double PercentChange
 		{
